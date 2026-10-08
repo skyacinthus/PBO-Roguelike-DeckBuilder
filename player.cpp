@@ -11,10 +11,6 @@ void Player::startBattle() {
     resetBattleState();
 
 }
-void Player::startTurn() {
-    clearBlock();
-    energy = maxEnergy;
-}
 
 void Player::endTurn() {
     endTurnEffects();
