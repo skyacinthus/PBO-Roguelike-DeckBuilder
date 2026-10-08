@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PLAYER_H
+#define PLAYER_H
 #include "character.h"
 
 class Player : public Character {
@@ -21,3 +22,4 @@ public:
     int getEnergy() const { return energy; }
     int getMaxEnergy() const { return maxEnergy; }
 };
+#endif PLAYER_H

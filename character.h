@@ -1,5 +1,5 @@
-#pragma once
-
+#ifndef CHARA_H
+#define CHARA_H
 #include <string>
 using namespace std;
 
@@ -42,3 +42,4 @@ public:
     int getStrength() const { return strength; }
     int getWeak() const { return weak; }
 };
+#endif CHARA_H
