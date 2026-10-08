@@ -24,5 +24,5 @@ void Enemy::executeIntent(Character& target){
         case IntentType::DEBUFF:
             target.applyWeak(nextIntent.turns);
             break;
-    }
+    }       
 }

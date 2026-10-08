@@ -1,8 +1,7 @@
 #include "character.h"
 #include <algorithm> 
-using namespace std;
 
-Character::Character(const string& name, int maxHp)
+Character::Character(const std::string& name, int maxHp)
     : name(name), hp(maxHp), maxHp(maxHp), block(0), strength(0), weak(0) {}
 
 void Character::clearBlock() {
@@ -12,23 +11,23 @@ void Character::clearBlock() {
 int Character::takeDamage(int amount) {
     if (amount < 0) amount = 0;
 
-    int absorbed = min(block, amount);
+    int absorbed = std::min(block, amount);
     block -= absorbed;
     int remaining = amount - absorbed;
 
-    int hpLost = min(hp, remaining);
+    int hpLost = std::min(hp, remaining);
     hp -= hpLost;
     return hpLost;
 }
 
 void Character::loseHP(int amount) {
     if (amount < 0) amount = 0;
-    hp = max(0, hp - amount);
+    hp = std::max(0, hp - amount);
 }
 
 void Character::heal(int amount) {
     if (amount < 0) amount = 0;
-    hp = min(maxHp, hp + amount);
+    hp = std::min(maxHp, hp + amount);
 }
 
 void Character::addBlock(int amount) {
@@ -46,7 +45,7 @@ void Character::applyWeak(int turns) {
 int Character::getAttackPower(int baseDamage) const {
     int total = baseDamage + strength;
     if (weak > 0) total = total * 3 / 4;
-    return max(0, total);
+    return std::max(0, total);
 }
 
 void Character::endTurnEffects() {

@@ -1,11 +1,11 @@
-#ifndef CHARA_H
-#define CHARA_H
+#ifndef CHARACTER_H
+#define CHARACTER_H
+
 #include <string>
-using namespace std;
 
 class Character {
 private:
-    string name;
+    std::string name;
     int hp;
     int maxHp;
     int block;
@@ -15,7 +15,7 @@ protected:
     void clearBlock();
 
 public:
-    Character(const string& name, int maxHp);
+    Character(const std::string& name, int maxHp);
     virtual ~Character() = default;  // perlu ga
 
     virtual void startTurn() = 0;
@@ -29,17 +29,18 @@ public:
 
     int getAttackPower(int baseDamage) const;
 
-    void endTurnEffects();
+    virtual void endTurnEffects();
 
     void resetBattleState();
 
     bool isAlive() const;
 
-    const string& getName() const { return name; }
+    const std::string& getName() const { return name; }
     int getHP() const { return hp; }
     int getMaxHP() const { return maxHp; }
     int getBlock() const { return block; }
     int getStrength() const { return strength; }
     int getWeak() const { return weak; }
 };
-#endif CHARA_H
+
+#endif
