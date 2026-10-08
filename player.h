@@ -1,6 +1,8 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 #include "character.h"
+#include <string>
+using namespace std;
 
 class Player : public Character {
 private:
@@ -14,7 +16,7 @@ public:
     void startTurn() override;   
     void endTurn();              
 
-    bool playCard(int handIndex, Character& target);
+    bool playCard(int handIndex, Character& target); // ini emang blm ada implementasinya kah? 
 
     void startBattle();
 
