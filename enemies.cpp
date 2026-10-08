@@ -5,6 +5,7 @@ const int PROGDAS_HP = 32;
 const int PVA_HP = 36;
 const int ALIN_HP = 40;
 const int MATDIS_HP = 50;
+const int ISIS_HP = 90;
 
 ProgDas::ProgDas() : Enemy("ProgDas", PROGDAS_HP, EnemyTier::COMMON), turnCounter(0) {}
 
@@ -67,4 +68,36 @@ void Kalkulus::endTurnEffects() {
     }
 }
 
+ISIS::ISIS() : Enemy("ISIS", ISIS_HP, EnemyTier::BOSS), turnCounter(0), phase(1) {}
+
+void ISIS::decideNextAction() {
+    int hpPercentage = (getHP() * 100) / getMaxHP();
+    int newPhase = (hpPercentage > 60) ? 1 : (hpPercentage > 30) ? 2 : 3;
+    if (newPhase != phase) {
+        phase = newPhase;
+        turnCounter = 0;
+    }
+
+    switch (phase) {
+        case 1:
+            switch (turnCounter % 2) {
+                case 0: nextIntent = {IntentType::ATTACK, 9, 0}; break;
+                case 1: nextIntent = {IntentType::DEFEND, 8, 0}; break;
+            }
+            break;
+        case 2:
+            switch (turnCounter % 2) {
+                case 0: nextIntent = {IntentType::DEBUFF, 0, 2}; break;
+                case 1: nextIntent = {IntentType::ATTACK, 10, 0}; break;
+            }
+            break;
+        case 3:
+            switch (turnCounter % 2) {
+                case 0: nextIntent = {IntentType::DEFEND, 6, 0}; break;
+                case 1: nextIntent = {IntentType::ATTACK, 15, 0}; break;
+            }
+            break;
+    }
+    turnCounter++;
+}
 
