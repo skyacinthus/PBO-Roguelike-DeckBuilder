@@ -25,3 +25,6 @@ bool Player::spendEnergy(int cost) {
     energy -= cost;
     return true;
 }
+void Player::addEnergy(int amount) {
+    if (amount > 0) energy += amount;   // boleh melebihi maxEnergy, seperti di Slay the Spire
+}

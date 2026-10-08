@@ -19,6 +19,7 @@ public:
     void startBattle();
 
     bool spendEnergy(int cost);
+    void addEnergy(int amount);
     int getEnergy() const { return energy; }
     int getMaxEnergy() const { return maxEnergy; }
 };
