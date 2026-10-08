@@ -1,10 +1,11 @@
 #pragma once
 
 #include <string>
+using namespace std;
 
 class Character {
 private:
-    std::string name;
+    string name;
     int hp;
     int maxHp;
     int block;
@@ -14,7 +15,7 @@ protected:
     void clearBlock();
 
 public:
-    Character(const std::string& name, int maxHp);
+    Character(const string& name, int maxHp);
     virtual ~Character() = default;  // perlu ga
 
     virtual void startTurn() = 0;
@@ -34,7 +35,7 @@ public:
 
     bool isAlive() const;
 
-    const std::string& getName() const { return name; }
+    const string& getName() const { return name; }
     int getHP() const { return hp; }
     int getMaxHP() const { return maxHp; }
     int getBlock() const { return block; }
