@@ -28,7 +28,7 @@ void PVA::decideNextAction() {
     }
 }
 
-ALin::ALin() : Enemy("ALin", ALIN_HP, EnemyTier::COMMON) {}
+ALin::ALin() : Enemy("ALin", ALIN_HP, EnemyTier::COMMON), turnCounter(0) {}
 
 void ALin::decideNextAction() {
     switch (turnCounter % 3) {
@@ -61,6 +61,7 @@ void Kalkulus::decideNextAction() {
 }
 
 void Kalkulus::endTurnEffects() {
+    Character::endTurnEffects(); 
     if (turnCounter % 3 == 2) {
         addStrength(2);
     }
