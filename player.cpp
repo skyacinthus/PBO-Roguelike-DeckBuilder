@@ -11,7 +11,6 @@ void Player::startBattle() {
     resetBattleState();
 
 }
-
 void Player::endTurn() {
     endTurnEffects();
 }
@@ -22,5 +21,8 @@ bool Player::spendEnergy(int cost) {
     return true;
 }
 void Player::addEnergy(int amount) {
-    if (amount > 0) energy += amount;   // boleh melebihi maxEnergy, seperti di Slay the Spire
+    if (amount > 0) energy += amount;
 }
+
+Player::Player() : Player("Mahasiswa", 80, 3, 5) {}
+Player::Player(const string& name, int maxHp, int maxEnergy, int drawPerTurn) : Character(name, maxHp), energy(maxEnergy), maxEnergy(maxEnergy), drawPerTurn(drawPerTurn) {}

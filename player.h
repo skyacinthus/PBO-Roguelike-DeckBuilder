@@ -11,6 +11,7 @@ private:
     int drawPerTurn;
 
 public:
+    Player();
     Player(const string& name, int maxHp, int maxEnergy = 3, int drawPerTurn = 5);
 
     void startTurn() override;   
