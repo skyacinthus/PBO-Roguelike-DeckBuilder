@@ -2,28 +2,66 @@
 #include <vector>
 using namespace std;
 
-class Card {
+class Character {
 
 };
 
-// class attack card
+class Player : public Character {
 
-// class def card
+};
 
-// class heal card 
+class Enemy : public Character {
 
-// class special/skill card
+};
 
-// class deck 
+class Card {
+    
+};
 
-// battle ?
+class AttackCard : public Card {
 
-// class enemy
+};
 
-// class easy enemy 1
+class DefCard : public Card {
 
-// class easy enemy 2 mending seperate class atau satu aja?
+};
 
-// class boss enemy - hp phase ?
+class BuffCard : public Card {
 
-// class player - hp energy
+};
+
+class DebuffCard : public Card {
+
+};
+
+class Deck {
+
+};
+
+class Battle {
+
+};
+
+class Game {
+
+
+};
+
+class Room  {
+
+};
+
+class BattleRoom : public Room {
+
+};
+
+class HealRoom : public Room {
+
+};
+
+class TreasureRoom : public Room {
+
+};
+
+
+
