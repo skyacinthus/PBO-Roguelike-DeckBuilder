@@ -11,12 +11,12 @@ private:
 public:
     Player(const string& name, int maxHp, int maxEnergy = 3, int drawPerTurn = 5);
 
-    void startTurn() override;   // reset block, isi energi, tarik kartu
-    void endTurn();              // buang sisa kartu, kurangi efek (weak, dll.)
+    void startTurn() override;   
+    void endTurn();              
 
     bool playCard(int handIndex, Character& target);
 
-    void startBattle();          // siapkan deck untuk pertarungan baru
+    void startBattle();
 
     bool spendEnergy(int cost);
     int getEnergy() const { return energy; }
