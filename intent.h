@@ -17,12 +17,4 @@ struct Intent {
     int turns;
 };
 
-class EnemyIntent {
-public:
-    Intent intent;
-
-    EnemyIntent(IntentType type, int value, int turns)
-        : intent{type, value, turns} {}
-};
-
 #endif
