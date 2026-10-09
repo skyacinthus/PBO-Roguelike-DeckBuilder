@@ -91,7 +91,6 @@ void Battle::printStatus(){
     } else {
         player.printHand();
     }
-    cout << "(nomor kartu, 0 = akhiri giliran, q = keluar)\n> ";
 }
 
 int Battle::readInput() {
