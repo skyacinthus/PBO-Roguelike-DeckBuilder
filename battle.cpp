@@ -2,17 +2,18 @@
 #include "player.h"
 #include "enemy.h"
 #include <iostream>
-#include <string> 
+#include <stdexcept>
+#include <string>
 using namespace std;
-
-Battle::Battle(Player& player, Enemy& enemy) : player(player), enemy(enemy), turnCounter(0) {}
 
 static string statusTags(const Character& c) {
     string s;
     if (c.getStrength() != 0) s += "  Str " + to_string(c.getStrength());
     if (c.getWeak() > 0)      s += "  Weak " + to_string(c.getWeak());
     return s;
-} // helper utk nampilin nnt
+}
+
+Battle::Battle(Player& player, Enemy& enemy) : player(player), enemy(enemy), turnCounter(0) {}
 
 bool Battle::run(){
     player.startBattle();
@@ -24,13 +25,12 @@ bool Battle::run(){
         enemyTurn();
     }
     if (player.isAlive()) {
-        cout << "You won the battle!" << endl;
+        cout << "Kamu menang!! :D" << endl;
     } else {
-        cout << "You lost the battle." << endl;
+        cout << "Kamu kalah :((" << endl;
     }
-    
     return player.isAlive();
-};
+}
 
 void Battle::playerTurn(){
     player.startTurn();
@@ -38,22 +38,23 @@ void Battle::playerTurn(){
         printStatus();
         int choice = readInput();
         if (choice == 0) {
-            break; 
-        } if (choice < 0 || choice > player.getHandSize()) {
-            cout << "Invalid choice. Please try again." << endl;
+            break;
+        }
+        if (choice < 0 || choice > player.getHandSize()) {
+            cout << "Pilihan tidak valid" << endl;
             continue;
-        };
+        }
 
         if (player.playCard(choice - 1, enemy)) {
             if (!enemy.isAlive()) {
-                return;                     
+                return;
             }
         } else {
-            cout << "Failed to play card. Check energy or card index." << endl;
+            cout << "Gagal memainkan kartu. Cek energy atau index kartu." << endl;
         }
-    };
+    }
     player.endTurn();
-};
+}
 
 void Battle::enemyTurn(){
     enemy.startTurn();
@@ -62,11 +63,11 @@ void Battle::enemyTurn(){
         enemy.endTurnEffects();
         enemy.decideNextAction();
     }
-};
+}
 
 void Battle::printStatus(){
-    cout << "\n=============== TURN " << turnCounter << " ===============\n";
- 
+    cout << "\n=============== Giliran " << turnCounter << " ===============\n";
+
     // enemy
     cout << enemy.getName()
          << "   HP " << enemy.getHP() << "/" << enemy.getMaxHP()
@@ -74,35 +75,36 @@ void Battle::printStatus(){
          << statusTags(enemy) << "\n";
     cout << "   Niat: " << enemy.getIntentText() << "\n";
     cout << "---------------------------------------------\n";
- 
+
+    // player
     cout << player.getName()
          << "   HP " << player.getHP() << "/" << player.getMaxHP()
          << "   Block " << player.getBlock()
          << "   Energi " << player.getEnergy() << "/" << player.getMaxEnergy()
          << statusTags(player) << "\n";
- 
+
+    // hand
     cout << "Kartu:\n";
     if (player.getHandSize() == 0) {
-        cout << "  (tidak ada kartu)\n";
+        cout << "[0] Selesaikan Turn \n";
     } else {
         player.printHand();
     }
 }
 
-
 int Battle::readInput() {
-    // cout buat milih kartu disini atau di playerTurn yah
+    cout << "Pilih kartu (1-" << player.getHandSize() << "), 0 = akhir giliran: ";
     string line;
     if (!getline(cin, line)) {
-        return 0; 
+        return 0;
     }
     try {
         return stoi(line);
     } catch (const invalid_argument&) {
-        cout << "Invalid input. Please enter a valid number.\n";
+        cout << "Input tidak valid.\n";
         return -1;
     } catch (const out_of_range&) {
-        cout << "Input out of range.\n";
+        cout << "Input di luar range.\n";
         return -1;
     }
 }
