@@ -95,7 +95,7 @@ void Battle::printStatus(){
 }
 
 int Battle::readInput() {
-    cout << "Pilih kartu (1-" << player.getHandSize() << "), 0 = akhir giliran: ";
+    cout << "Pilih kartu (1-" << player.getHandSize() << "), 0 = akhir giliran, q = keluar: ";
     string line;
     if (!getline(cin, line) || line == "q" || line == "Q") quitGame();
     try {

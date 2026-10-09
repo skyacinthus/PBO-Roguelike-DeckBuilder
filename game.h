@@ -9,7 +9,7 @@
 #include <iostream>
 
 inline void quitGame() {
-    std::cout << "\nGame berhenti. Sampai jumpa lain waktu!\n";
+    std::cout << "\nGame berhenti. Sampai jumpa di lain waktu!\n";
     std::exit(0);
 }
 
