@@ -7,6 +7,13 @@ using namespace std;
 
 Battle::Battle(Player& player, Enemy& enemy) : player(player), enemy(enemy), turnCounter(0) {}
 
+static string statusTags(const Character& c) {
+    string s;
+    if (c.getStrength() != 0) s += "  Str " + to_string(c.getStrength());
+    if (c.getWeak() > 0)      s += "  Weak " + to_string(c.getWeak());
+    return s;
+} // helper utk nampilin nnt
+
 bool Battle::run(){
     player.startBattle();
     enemy.decideNextAction();
@@ -58,8 +65,30 @@ void Battle::enemyTurn(){
 };
 
 void Battle::printStatus(){
- // tambahin nnt aja
-};
+    cout << "\n=============== TURN " << turnCounter << " ===============\n";
+ 
+    // enemy
+    cout << enemy.getName()
+         << "   HP " << enemy.getHP() << "/" << enemy.getMaxHP()
+         << "   Block " << enemy.getBlock()
+         << statusTags(enemy) << "\n";
+    cout << "   Niat: " << enemy.getIntentText() << "\n";
+    cout << "---------------------------------------------\n";
+ 
+    cout << player.getName()
+         << "   HP " << player.getHP() << "/" << player.getMaxHP()
+         << "   Block " << player.getBlock()
+         << "   Energi " << player.getEnergy() << "/" << player.getMaxEnergy()
+         << statusTags(player) << "\n";
+ 
+    cout << "Kartu:\n";
+    if (player.getHandSize() == 0) {
+        cout << "  (tidak ada kartu)\n";
+    } else {
+        player.printHand();
+    }
+}
+
 
 int Battle::readInput() {
     // cout buat milih kartu disini atau di playerTurn yah

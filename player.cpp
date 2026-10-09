@@ -1,5 +1,6 @@
 #include "player.h"
 #include "card.h"
+#include <iostream>
 using namespace std;
 
 Player::Player() : Player("Mahasiswa", 80, 3, 5) {}
@@ -52,4 +53,23 @@ bool Player::spendEnergy(int cost) {
 }
 void Player::addEnergy(int amount) {
     if (amount > 0) energy += amount;
+}
+
+void Player::printHand() const {
+    int handSize = deck.handSize();
+    
+    if (handSize == 0) {
+        cout << "[ Tangan Kosong ]\n";
+        return;
+    }
+
+    cout << "\n=== Kartu di Tangan (Energy: " << energy << "/" << maxEnergy << ") ===\n";
+    cout << "[0] Selesaikan Turn\n"; 
+    for (int i = 0; i < handSize; ++i) {
+        const Card& card = deck.cardInHand(i);
+        cout << "[" << (i + 1) << "] " << card.getName() 
+             << " (Cost: " << card.getCost() << " Energy)"
+             << " - " << card.getDescription() << "\n";
+    }
+    cout << "========================================================\n";
 }

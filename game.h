@@ -3,11 +3,22 @@
 #include "room.h"
 #include "player.h"
 #include <memory>
+#include <vector>
 using namespace std; 
 
-// coba bikin room generation di game
-unique_ptr<Room> generateRandomRoom(int currentFloor);
-unique_ptr<Room> chooseNextRoom(int currentFloor);
-void runGame(Player& player);
+class Game {
+private:
+    Player player;
+    int roomsCleared;
+    int eliteCount;
+
+    vector<unique_ptr<Room>> generateRoomChoices(int roomNumber);
+    int askPlayerToChoose(const vector<unique_ptr<Room>>& choices);
+    void showEndScreen(bool won);
+
+public:
+    Game();
+    void run();
+};
 
 #endif

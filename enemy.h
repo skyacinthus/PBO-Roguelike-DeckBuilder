@@ -26,6 +26,7 @@ class Enemy : public Character {
         virtual void decideNextAction() = 0;
 
         void executeIntent(Character& target);
+        string getIntentText() const;
 
         const Intent& getNextIntent() const { return nextIntent; }
         EnemyTier getTier() const { return tier; }

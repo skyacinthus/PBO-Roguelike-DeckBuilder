@@ -35,4 +35,4 @@ public:
     const Card& cardInHand(int index) const { return *hand[index]; }
 };
 
-#endif DECK_H
+#endif 
