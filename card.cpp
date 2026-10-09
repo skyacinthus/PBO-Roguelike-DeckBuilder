@@ -64,7 +64,7 @@ unique_ptr<Card> createCard(CardId id) {
         case CardId::LATIHAN_SOAL:     
             return make_unique<AttackCard>("Latihan Soal", 1, 5);
         case CardId::NGERJAIN_PR:      
-            return make_unique<AttackCard>("Ngerjain PR", 2, 9);
+            return make_unique<AttackCard>("Ngerjain PR", 2, 12);
         case CardId::BELAJAR_BEGADANG: 
             return make_unique<AttackCard>("Belajar Begadang", 3, 18);
         case CardId::TUTOR_YOUTUBE:    

@@ -68,7 +68,7 @@ void Player::printHand() const {
     for (int i = 0; i < handSize; ++i) {
         const Card& card = deck.cardInHand(i);
         cout << "[" << (i + 1) << "] " << card.getName() 
-             << " (Cost: " << card.getCost() << " Energy)"
+             << " (Cost: " << card.getCost() << " Energi)"
              << " - " << card.getDescription() << "\n";
     }
     cout << "========================================================\n";
