@@ -11,7 +11,7 @@ static int askNumber(int lo, int hi) {
     while (true) {
         cout << "Pilihan: ";
         string line;
-        if (!getline(cin, line)) return lo;          
+        if (!getline(cin, line) || line == "q" || line == "Q") quitGame();         
         try {
             int n = stoi(line);
             if (n >= lo && n <= hi) return n;

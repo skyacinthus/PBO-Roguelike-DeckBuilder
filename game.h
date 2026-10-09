@@ -5,6 +5,13 @@
 #include <vector>
 #include "player.h"
 #include "room.h"
+#include <cstdlib>
+#include <iostream>
+
+inline void quitGame() {
+    std::cout << "\nGame berhenti. Sampai jumpa lain waktu!\n";
+    std::exit(0);
+}
 
 class Game {
 private:

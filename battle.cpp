@@ -1,6 +1,7 @@
 #include "battle.h"
 #include "player.h"
 #include "enemy.h"
+#include "game.h"
 #include <iostream>
 #include <stdexcept>
 #include <string>
@@ -90,14 +91,13 @@ void Battle::printStatus(){
     } else {
         player.printHand();
     }
+    cout << "(nomor kartu, 0 = akhiri giliran, q = keluar)\n> ";
 }
 
 int Battle::readInput() {
     cout << "Pilih kartu (1-" << player.getHandSize() << "), 0 = akhir giliran: ";
     string line;
-    if (!getline(cin, line)) {
-        return 0;
-    }
+    if (!getline(cin, line) || line == "q" || line == "Q") quitGame();
     try {
         return stoi(line);
     } catch (const invalid_argument&) {
