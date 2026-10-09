@@ -1,19 +1,18 @@
 #ifndef GAME_H
 #define GAME_H
-#include "room.h"
-#include "player.h"
+
 #include <memory>
 #include <vector>
-using namespace std; 
+#include "player.h"
+#include "room.h"
 
 class Game {
 private:
     Player player;
     int roomsCleared;
-    int eliteCount;
+    int treasureCount;          // treasure rooms the player has taken this run
 
-    vector<unique_ptr<Room>> generateRoomChoices(int roomNumber);
-    int askPlayerToChoose(const vector<unique_ptr<Room>>& choices);
+    std::vector<std::unique_ptr<Room>> generateRoomChoices(int roomNumber);
     void showEndScreen(bool won);
 
 public:
@@ -21,4 +20,4 @@ public:
     void run();
 };
 
-#endif
+#endif // GAME_H

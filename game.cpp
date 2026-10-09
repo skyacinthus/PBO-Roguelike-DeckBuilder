@@ -4,24 +4,25 @@
 #include <string>
 using namespace std;
 
-const int ROOMS_BEFORE_BOSS = 8;  
+const int ROOMS_BEFORE_BOSS = 9;   
+const int MAX_TREASURE_ROOMS = 2;  
 
-static int askNumber(int low, int high) {
+static int askNumber(int lo, int hi) {
     while (true) {
         cout << "Pilihan: ";
         string line;
-        if (!getline(cin, line)) return low;         
+        if (!getline(cin, line)) return lo;          
         try {
             int n = stoi(line);
-            if (n >= low && n <= high) return n;
+            if (n >= lo && n <= hi) return n;
         } catch (...) {
-            // tny lagisampai ada input sesuai
+            
         }
-        cout << "Masukkan angka " << low << " sampai " << high << ".\n";
+        cout << "Masukkan angka " << lo << " sampai " << hi << ".\n";
     }
 }
 
-Game::Game() : roomsCleared(0) {}
+Game::Game() : roomsCleared(0), treasureCount(0) {}
 
 vector<unique_ptr<Room>> Game::generateRoomChoices(int roomNumber) {
     vector<unique_ptr<Room>> choices;
@@ -30,14 +31,16 @@ vector<unique_ptr<Room>> Game::generateRoomChoices(int roomNumber) {
     for (int i = 0; i < 3; i++) {
         int roll = rand() % 100;
         if (roomNumber == 1 || roll < 55) {
-            choices.push_back(make_unique<BattleRoom>(EnemyTier::COMMON)); 
-        } else if (roll < 75) {
-            choices.push_back(make_unique<HealRoom>());           
+            choices.push_back(make_unique<BattleRoom>(EnemyTier::COMMON));   
+        } else if (roll < 70) {
+            choices.push_back(make_unique<HealRoom>());                      
             hasHeal = true;
-        } else if (roll < 90 || roomNumber < 4) {
-            choices.push_back(make_unique<TreasureRoom>());          
+        } else if (roll < 80 && treasureCount < MAX_TREASURE_ROOMS) {
+            choices.push_back(make_unique<TreasureRoom>());                  
+        } else if (roll >= 90 && roomNumber >= 4) {
+            choices.push_back(make_unique<BattleRoom>(EnemyTier::ELITE));    
         } else {
-            choices.push_back(make_unique<BattleRoom>(EnemyTier::ELITE)); 
+            choices.push_back(make_unique<BattleRoom>(EnemyTier::COMMON)); 
         }
     }
 
@@ -49,7 +52,7 @@ vector<unique_ptr<Room>> Game::generateRoomChoices(int roomNumber) {
 
 void Game::run() {
     cout << "===== ROGUELIKE KULIAH =====\n";
-    cout << "bertahan sampai matkul terakhir hmzzz (sampai sem 3 doang sih)\n";
+    cout << "Bertahan sampai matkul terakhir: ISIS!\n";
 
     for (int room = 1; room <= ROOMS_BEFORE_BOSS; room++) {
         cout << "\n--- Ruangan " << room << " dari " << (ROOMS_BEFORE_BOSS + 1)
@@ -61,7 +64,10 @@ void Game::run() {
         }
 
         int pick = askNumber(1, (int)choices.size());
-        choices[pick - 1]->enter(player);            
+        if (dynamic_cast<TreasureRoom*>(choices[pick - 1].get())) {
+            treasureCount++;                         // count treasure rooms the player actually takes
+        }
+        choices[pick - 1]->enter(player);            // polymorphism: each room does its own thing
 
         if (!player.isAlive()) {
             showEndScreen(false);
@@ -79,7 +85,7 @@ void Game::run() {
 void Game::showEndScreen(bool won) {
     cout << "\n=============================\n";
     if (won) {
-        cout << "SELAMAT! ISIS berhasil kamu kalahkan. Kamu lulus (semester 3)!\n";
+        cout << "SELAMAT! ISIS berhasil kamu kalahkan. Kamu lulus!\n";
     } else {
         cout << "GAME OVER. Kamu gugur setelah melewati " << roomsCleared << " ruangan.\n";
     }
