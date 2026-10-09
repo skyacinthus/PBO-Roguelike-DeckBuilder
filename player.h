@@ -9,9 +9,8 @@ private:
     int energy;
     int maxEnergy;
     int drawPerTurn;
-
+    int handSize; 
 public:
-    Player();
     Player(const string& name, int maxHp, int maxEnergy = 3, int drawPerTurn = 5);
 
     void startTurn() override;   
@@ -22,8 +21,9 @@ public:
     void startBattle();
 
     bool spendEnergy(int cost);
-    void addEnergy(int amount);
+    void addEnery(int amount);
     int getEnergy() const { return energy; }
     int getMaxEnergy() const { return maxEnergy; }
+    int getHandSize() const { return handSize; }
 };
-#endif PLAYER_H
+#endif

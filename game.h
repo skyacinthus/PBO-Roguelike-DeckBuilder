@@ -5,7 +5,7 @@
 #include <memory>
 using namespace std; 
 
-
+// coba bikin room generation di game
 unique_ptr<Room> generateRandomRoom(int currentFloor);
 unique_ptr<Room> chooseNextRoom(int currentFloor);
 void runGame(Player& player);

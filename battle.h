@@ -12,8 +12,8 @@ class Battle {
 
         void playerTurn();
         void enemyTurn();
-        void printStatus() const;
-        int readInput() const; // utk no kartu, 0 = end turn
+        void printStatus();
+        int readInput(); // utk no kartu, 0 = end turn
     public:
         Battle(Player& player, Enemy& enemy);
         bool run(); // klo menang true klo kalah false

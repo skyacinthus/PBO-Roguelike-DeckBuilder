@@ -49,7 +49,9 @@ int Character::getAttackPower(int baseDamage) const {
 }
 
 void Character::endTurnEffects() {
-    if (weak > 0) weak--;
+    if (weak > 0) {
+        weak--;
+    }
 }
 
 void Character::resetBattleState() {

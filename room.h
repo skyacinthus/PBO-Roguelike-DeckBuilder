@@ -12,7 +12,7 @@ public:
     virtual void enter(Player& player) = 0;           // polimorfisme di sini
     virtual string getDescription() const = 0;        // untuk ditampilkan saat memilih
 };
-enum class EnemyTier { COMMON, ELITE, BOSS };
+enum class EnemyTier { COMMON, ELITE, BOSS }; 
 
 class BattleRoom : public Room {
 private:
@@ -34,4 +34,4 @@ public:
     void enter(Player& player) override;    
     string getDescription() const override { return "Treasure Room"; }
 };
-#endif ROOM_H
+#endif

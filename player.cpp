@@ -1,6 +1,8 @@
 #include "player.h"
 using namespace std;
 
+Player::Player() : Player("Mahasiswa", 80, 3, 5) {}
+
 Player::Player(const string& name, int maxHp, int maxEnergy, int drawPerTurn) : Character(name, maxHp), energy(maxEnergy), maxEnergy(maxEnergy), drawPerTurn(drawPerTurn) {}
 
 void Player::startTurn() {
@@ -23,6 +25,3 @@ bool Player::spendEnergy(int cost) {
 void Player::addEnergy(int amount) {
     if (amount > 0) energy += amount;
 }
-
-Player::Player() : Player("Mahasiswa", 80, 3, 5) {}
-Player::Player(const string& name, int maxHp, int maxEnergy, int drawPerTurn) : Character(name, maxHp), energy(maxEnergy), maxEnergy(maxEnergy), drawPerTurn(drawPerTurn) {}

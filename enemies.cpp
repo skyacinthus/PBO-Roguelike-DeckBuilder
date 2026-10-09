@@ -87,8 +87,9 @@ void ISIS::decideNextAction() {
             break;
         case 2:
             switch (turnCounter % 2) {
-                case 0: nextIntent = {IntentType::DEBUFF, 0, 2}; break;
-                case 1: nextIntent = {IntentType::ATTACK, 10, 0}; break;
+                case 0: nextIntent = {IntentType::BUFF, 2, 0}; break;
+                case 1: nextIntent = {IntentType::DEBUFF, 0, 2}; break;
+                case 2: nextIntent = {IntentType::ATTACK, 10, 0}; break;
             }
             break;
         case 3:
