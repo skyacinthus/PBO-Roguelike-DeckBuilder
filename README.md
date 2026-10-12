@@ -6,7 +6,7 @@ Salma Karimah Kamal 25/556423/TK/62761
 
 # BUILD COMMAND
 ```
-g++ -std=c++17 -Wall -Wextra main.cpp game.cpp room.cpp battle.cpp player.cpp card.cpp deck.cpp enemies.cpp enemy.cpp character.cpp -o game
+g++ -std=c++17 main.cpp game.cpp room.cpp battle.cpp player.cpp card.cpp deck.cpp enemies.cpp enemy.cpp character.cpp -o game
 ```
 
 # TODO
