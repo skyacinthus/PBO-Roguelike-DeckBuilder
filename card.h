@@ -26,7 +26,7 @@ private:
 
 public:
     Card(CardId id, const string& name, int cost, Rarity rarity = Rarity::COMMON)
-        : name(name), cost(cost), rarity(rarity) {}
+        : id(id), name(name), cost(cost), rarity(rarity) {}
     virtual ~Card() = default;
 
     virtual void play(Player& user, Character& target) = 0;
