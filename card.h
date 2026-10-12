@@ -22,8 +22,10 @@ private:
     string name;
     int cost;
     Rarity rarity;
+    CardId id;
+
 public:
-    Card(const string& name, int cost, Rarity rarity = Rarity::COMMON)
+    Card(CardId id, const string& name, int cost, Rarity rarity = Rarity::COMMON)
         : name(name), cost(cost), rarity(rarity) {}
     virtual ~Card() = default;
 
@@ -33,13 +35,14 @@ public:
     const string& getName() const { return name; }
     int getCost() const { return cost; }
     Rarity getRarity() const { return rarity; }
+    CardId getID() const { return id;}
 };
 
 class AttackCard : public Card {
 private:
     int damage;
 public:
-    AttackCard(const string& name, int cost, int damage, Rarity r = Rarity::COMMON);
+    AttackCard(CardId id, const string& name, int cost, int damage, Rarity r = Rarity::COMMON);
     void play(Player& user, Character& target) override;
     string getDescription() const override;
 };
@@ -48,7 +51,7 @@ class DefenseCard : public Card {
 private:
     int block;
 public:
-    DefenseCard(const string& name, int cost, int block, Rarity r = Rarity::COMMON);
+    DefenseCard(CardId id, const string& name, int cost, int block, Rarity r = Rarity::COMMON);
     void play(Player& user, Character& target) override;
     string getDescription() const override;
 };
@@ -57,7 +60,7 @@ class DebuffCard : public Card {
 private:
     int weakTurns;
 public:
-    DebuffCard(const string& name, int cost, int weakTurns, Rarity r = Rarity::COMMON);
+    DebuffCard(CardId id, const string& name, int cost, int weakTurns, Rarity r = Rarity::COMMON);
     void play(Player& user, Character& target) override;
     string getDescription() const override;
 };
@@ -67,7 +70,7 @@ private:
     int energyGain;
     int strengthGain;
 public:
-    BuffCard(const string& name, int cost, int energyGain, int strengthGain,
+    BuffCard(CardId id, const string& name, int cost, int energyGain, int strengthGain,
              Rarity r = Rarity::COMMON);
     void play(Player& user, Character& target) override;
     string getDescription() const override;
